@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('./LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #fff;
+            color: #04376f;
+            padding: 2rem;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(39, 61, 81, 0.8)), url('./academic-block-university-of-layyah1729969953.jpg') no-repeat center/cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+       /* Header Styles */
+       header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #083262, #1e88e5);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        /* Toggle Button Styles */
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .toggle-button div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background-color: #004aad;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                padding: 1rem;
+                border-top: 1px solid #fff;
+                z-index: 999;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+
+            header h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        button {
+            background-color: #004aad;
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003399;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #004aad;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>University Of Layyah</h1>
+        <div class="toggle-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="navMenu">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/professorlogin">Professor Login</a>
+            <a href="/login">Students Login</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form action="/feedback" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="number" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <label for="message">Feedback:</label>
+            <textarea id="message" name="message" placeholder="Enter your feedback" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+    <footer>
+        &copy; <script>document.write(new Date().getFullYear())</script> Attendance System. All Rights Reserved.
+    </footer>
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

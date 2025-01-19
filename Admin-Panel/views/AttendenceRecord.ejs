@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Attendance</title>
+    <style>
+       /* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #0072b5;
+    color: #fff;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Toggle Button */
+.toggle-button {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 15;
+}
+
+.toggle-button div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex; /* Show by default on larger screens */
+    flex-direction: row;
+    position: absolute;
+    top: 70px; /* Adjust based on header height */
+    left: 0;
+    background-color: #0072b5;
+    width: 100%;
+    padding: 1rem;
+    transition: max-height 0.3s ease;
+    z-index: 5;
+}
+
+nav.show {
+    display: flex; /* Show when toggled */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0.5rem 1rem; /* Increased margin for better spacing */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+/* Main Content */
+main {
+    padding: 3rem 1rem; /* Default padding */
+    max-width: 900px; /* Maximum width */
+    margin-top: 30px; /* Top margin */
+    margin-left: auto; /* Center align */
+    margin-right: auto; /* Center align */
+    transition: 0.3s;
+}
+
+/* Table Styles */
+.table-responsive {
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    margin-bottom: 2rem; /* Space below the table */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Merge borders */
+    border-radius: 8px;
+    overflow: hidden; /* Prevent overflow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow to table */
+}
+
+th, td {
+    padding: 1rem; /* Add padding for table cells */
+    text-align: center; /* Center align text */
+    border-bottom: 1px solid #ddd; /* Bottom border for cells */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+th {
+    background-color: #0072b5; /* Header background color */
+    color: #fff; /* Header text color */
+    font-weight: bold; /* Bold text */
+}
+
+td {
+    background-color: #f9f9f9; /* Default cell background color */
+}
+
+tr:hover td {
+    background-color: #e0f7fa; /* Highlight row on hover */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #0072b5; /* Primary color */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav {
+        display: none; /* Hide navigation by default on small screens */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        left: 0;
+ background-color: #0072b5;
+        width: 100%;
+        padding: 1rem;
+        z-index: 5;
+    }
+
+    header nav.show {
+        display: flex; /* Show when toggled */
+    }
+
+    .toggle-button {
+        display: flex; /* Show toggle button on smaller screens */
+    }
+
+    main {
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+        margin-left: 0; /* Remove left margin */
+        margin-right: 0; /* Remove right margin */
+    }
+
+    table {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+    }
+
+    th, td {
+        padding: 0.75rem; /* Smaller padding for mobile */
+    }
+}
+
+    button {
+            background-color: #0072b5;
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size:  1.1rem;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+         button:hover {
+            background-color: #005f8c;
+        }
+
+@media (max-width: 480px) {
+    table {
+        font-size: 0.8rem; /* Even smaller font size for very small screens */
+    }
+
+    main {
+        padding: 1rem; /* Further reduce padding for very small screens */
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Attendance System</h1>
+        <button class="toggle-button" id="toggleButton">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <nav id="navMenu">
+
+            <a href="/index">Attendance Sheet</a>
+            <a href="/AddStudents">Add New Students</a>
+            <a href="/professorlist">Check List</a>
+        </nav>
+    </header>
+    <main>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Attendance Count</th>
+                        <% if (attendanceRecords.length >  0 && attendanceRecords[0]. attendance) { %>
+                            <% attendanceRecords[0].attendance.forEach(record => { %>
+                                <th><%= record.date %></th>
+                            <% }); %>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% attendanceRecords.forEach(student => { %>
+                        <tr>
+                            <td><%= student.rollno %></td>
+                            <td><%= student.name %></td>
+                            <td><%= student.attendanceCount %></td>
+                            <% student.attendance.forEach(record => { %>
+                                <td><%= record.status === 'Present' ? 'Present' : 'Absent' %></td>
+                            <% }); %>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            
+        </div>
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </main>
+    
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('show'); // Toggle the class for show/hide
+        });
+
+        // Optional: Close the menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!navMenu.contains(event.target) && !toggleButton.contains(event.target)) {
+                navMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

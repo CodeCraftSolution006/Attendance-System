@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./LogoUOL.jpg" type="image/jpg">
+    <title>Home Page - University Of Layyah</title>
+    <style>
+         /* Reset Styles */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, rgba(120, 125, 128, 0.8), rgba(79, 103, 123, 0.8)), url('./academic-block-university-of-layyah1729969953.jpg') no-repeat center/cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #083262, #1e88e5);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        /* Toggle Button Styles */
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .toggle-button div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+        /* Main Content Styles */
+        .university-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: #fcfcfc;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 180px);
+            padding: 2rem;
+        }
+
+        .image-container {
+            width: 1200px;
+            height: 450px;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 1200px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: linear-gradient(90deg, #1565c0, #1e88e5);
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 845px) {
+            header {
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                text-align: center;
+                flex-basis: 100%;
+            }
+
+            .image-container {
+            width: 500px;
+            height: 370px;
+            
+        }
+
+        .image-container img {
+            width: 399px;
+            height: 370px;
+           
+        }
+
+            nav {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+                background-color: #004aad;
+                padding: 1rem 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+
+            .university-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .image-container {
+            width: 300px;
+            height: 360px;
+            
+        }
+
+        .image-container img {
+            width: 300px;
+            height: 360px;
+            
+        }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .university-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>University Of Layyah</h1>
+        <div class="toggle-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="navMenu">
+            <a href="/about">About</a>
+            <a href="/login">Student Login</a>
+            <a href="/professorlogin">Professor Login</a>
+            <a href="/feedback">Feedback</a>
+        </nav>
+    </header>
+
+    <h1 class="university-title">Attendance System</h1>
+
+    <div class="container">
+        <main>
+            <marquee style="color: rgb(3, 3, 3); font-size: larger;">Please Add your Feedback Your Feeback Help me to Improve my service about this website</marquee>
+            <div class="image-container" id="imageContainer">
+                <img class="image" src="./academic-block-university-of-layyah1729969953.jpg" alt="University Image 1">
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        &copy; <script>document.write(new Date().getFullYear())</script> Attendance System. All Rights Reserved.
+    </footer>
+
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

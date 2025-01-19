@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - University of Layyah</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #1565c0, #1e88e5);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        /* Toggle Button Styles */
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .toggle-button div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background-color: #004aad;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                padding: 1rem;
+                border-top: 1px solid #fff;
+                z-index: 999;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            color: #004aad;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .container p {
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f7f7f7;
+            border-left: 5px solid #004aad;
+        }
+
+        .contact-info h3 {
+            color: #004aad;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            margin: 0.3rem 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #004aad;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>University Of Layyah</h1>
+        <div class="toggle-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="navMenu">
+            <a href="/home">Home</a>
+            <a href="/professorlogin">Professor Login</a>
+            <a href="/login">Student Login</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Welcome to the University of Layyah Attendance System, a platform dedicated to revolutionizing the way attendance is managed and tracked. Our mission is to provide a seamless and efficient system that enhances the academic experience for both professors and students.</p>
+
+        <p>The University of Layyah, located in the heart of Layyah, is known for its commitment to excellence in education and innovation. With a strong leadership team, including our esteemed Vice Chancellor, <strong>Mr. Zubair Abu Bakkar</strong>, and Head of Department, <strong>Sir Faisal Hafeez Thind</strong>, we strive to maintain the highest standards of education and technology integration.</p>
+
+        <p>Our attendance system allows professors to manage student attendance with ease, ensuring accuracy and transparency. Students, on the other hand, can view their attendance records effortlessly, fostering accountability and academic discipline.</p>
+
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>City Campus:</strong> Katchehry Road, Layyah</p>
+            <p><strong>Main Campus:</strong> Karor Road, Hafiz Abad, Layyah</p>
+            <p><strong>Phone:</strong> 0606-920247</p>
+            <p><strong>Email:</strong> <a href="mailto:info@ul.edu.pk">info@ul.edu.pk</a></p>
+        </div>
+
+        <p>We are committed to fostering an environment of academic excellence and collaboration. If you have any questions or need assistance, please do not hesitate to contact us using the details provided above.</p>
+    </div>
+    <footer>
+        &copy; <script>document.write(new Date().getFullYear())</script> University of Layyah Attendance System. All Rights Reserved.
+    </footer>
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

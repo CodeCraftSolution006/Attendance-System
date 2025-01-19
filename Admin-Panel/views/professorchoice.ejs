@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, rgba(92, 151, 211, 0.9), rgba(255, 255, 255, 0.9)),
+                url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #1565c0, #1e88e5);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        /* Toggle Button Styles */
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .toggle-button div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .professor-section {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h2 {
+            color: #1e88e5;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .professor-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .professor-card {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            max-width: 300px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        dl {
+            margin: 0;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #1e88e5;
+            margin-bottom: 5px;
+        }
+
+        dd {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1565c0;
+            color: white;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #0072b5;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                padding: 10px;
+                text-align: center;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+
+            .professor-section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .professor-card {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .professor-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Professor Information</h1>
+        <button class="toggle-button" id="toggleButton">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <nav id="navMenu">
+            <a href="/home">Home</a>
+            <a href="/login">Student Login</a>
+            <a href="/professorlogin">Professor Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="professor-section">
+            <h2>Meet Our Professors</h2>
+            <div class="professor-cards">
+                <% list.forEach(function(professor) { %>
+                    <div class="professor-card">
+                        <dl>
+                            <dt>Name:</dt>
+                            <dd><%= professor.name %></dd>
+                            <dt>Email:</dt>
+                            <dd><%= professor.email %></dd>
+                            <dt>Phone Number:</dt>
+                            <dd><%= professor.phone %></dd>
+                            <dt>Qualification:</dt>
+                            <dd><%= professor.qualification %></dd>
+                        </dl>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

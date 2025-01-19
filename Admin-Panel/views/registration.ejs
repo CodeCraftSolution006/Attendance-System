@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+        }
+
+         /* Header Styles */
+         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #1565c0, #1e88e5);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        /* Toggle Button Styles */
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .toggle-button div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Maximum width for the form */
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        form div {
+            margin-bottom: 1.5rem; /* Spacing between form elements */
+        }
+
+        /* Input and Select Styles */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus {
+            border-color: #0072b5; /* Change border color on focus */
+            outline: none;
+        }
+
+        button {
+            background-color: #0072b5; /* Primary button color */
+            color: #fff;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width button */
+        }
+
+        button:hover {
+            background-color: #005f8c; /* Darker shade on hover */
+        }
+
+        .error-message {
+            color: red; /* Error message color */
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0072b5; /* Primary color */
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Home Link */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #0072b5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem; /* Adjust padding for smaller screens */
+            }
+
+            form {
+                padding: 1.5rem; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Register Students For Attendance Portal</h1>
+    </header>
+
+    <main>
+        <form action="/register" method="POST">
+            <% if (error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div>
+                <label for="rollno">Roll Number:</label>
+                <input type="text" id="rollno" name="rollno" required>
+            </div>
+
+            <div>
+                <label for="password">Password:</label><br>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    pattern=".{8,}" 
+                    title="Password must be at least 8 characters long">
+            </div>
+
+            <input type="hidden" id="role" name="role" value="student">
+
+            <div>
+                <a href="/home">Back to Home</a>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        © <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Login</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #0072b5; /* Primary color */
+            color: #fff;
+            padding: 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Maximum width for the form */
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        form div {
+            margin-bottom: 1.5rem; /* Spacing between form elements */
+        }
+
+        /* Input and Select Styles */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+            border-color: #0072b5; /* Change border color on focus */
+            outline: none;
+        }
+
+        .dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown input {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 20px); /* Adjust width for padding */
+        }
+
+        .dropdown-list {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .dropdown-list div {
+            padding: 0.75rem;
+            cursor: pointer;
+        }
+
+        .dropdown-list div:hover {
+            background-color: #f0f0f0; /* Highlight on hover */
+        }
+
+        button {
+            background-color: #0072b5; /* Primary button color */
+            color: #fff;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width button */
+        }
+
+        button:hover {
+            background-color: #005f8c; /* Darker shade on hover */
+        }
+
+        .error-message {
+            color: red; /* Error message color */
+            margin-bottom: 1rem;
+            font-weight : bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0072b5; /* Primary color */
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Home Link */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #0072b5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem; /* Adjust padding for smaller screens */
+            }
+
+            form {
+                padding: 1.5rem; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Professor Login</h1>
+    </header>
+
+    <main>
+        <form action="/professorlogin" method="post">
+            <% if (error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="password">Password:</label><br>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    pattern=".{8,}" 
+                    title="Password must be at least 8 characters long">
+            </div>
+
+            <div class="dropdown">
+                <label for="semester">Select Semester:</label><br>
+                <input type="text" name="semester" id="semester-input" placeholder="Search Semester..." onkeyup="filterOptions()">
+                <div class="dropdown-list" id="dropdown-list">
+                    <div onclick="selectOption('BS-IT Evening 1 semester')">BS-IT Evening 1 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 2 semester')">BS-IT Evening 2 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 3 semester')">BS-IT Evening 3 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 4 semester')">BS-IT Evening 4 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 5 semester')">BS-IT Evening 5 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 6 semester')">BS-IT Evening 6 semester</div>
+                    <div onclick="selectOption('BS-IT Evening 7 semester')">BS-IT Evening 7 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 8 semester')">BS-CS Evening 8 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 1 semester')">BS-CS Evening 1 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 2 semester')">BS-CS Evening 2 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 3 semester')">BS-CS Evening 3 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 4 semester')">BS-CS Evening 4 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 5 semester')">BS-CS Evening 5 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 6 semester')">BS-CS Evening 6 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 7 semester')">BS-CS Evening 7 semester</div>
+                    <div onclick="selectOption('BS-CS Evening 8 semester')">BS-CS Evening 8 semester</div>
+
+                    <div onclick="selectOption('BS-IT Morning 1 semester')">BS-IT Morning 1 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 2 semester')">BS-IT Morning 2 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 3 semester')">BS-IT Morning 3 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 4 semester')">BS-IT Morning 4 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 5 semester')">BS-IT Morning 5 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 6 semester')">BS-IT Morning 6 semester</div>
+                    <div onclick="selectOption('BS-IT Morning 7 semester')">BS-IT Morning 7 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 8 semester')">BS-IT Morning 8 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 1 semester')">BS-CS Morning 1 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 2 semester')">BS-CS Morning 2 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 3 semester')">BS-CS Morning 3 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 4 semester')">BS-CS Morning 4 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 5 semester')">BS-CS Morning 5 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 6 semester')">BS-CS Morning 6 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 7 semester')">BS-CS Morning 7 semester</div>
+                    <div onclick="selectOption('BS-CS Morning 8 semester')">BS-CS Morning 8 semester</div>
+                </div>
+            </div>
+            <a href="/home">Back to Home</a>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+    <footer>
+        © <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+
+    <script>
+        function filterOptions() {
+            const input = document.getElementById('semester-input');
+            const filter = input.value.toLowerCase();
+            const dropdownList = document.getElementById('dropdown-list');
+            const options = dropdownList.getElementsByTagName('div');
+
+            dropdownList.style.display = 'block'; // Show dropdown
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                if (option.innerText.toLowerCase().includes(filter)) {
+                    option.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            }
+
+            if (filter === '') {
+                dropdownList.style.display = 'none'; // Hide dropdown if input is empty
+            }
+        }
+
+        function selectOption(value) {
+            document.getElementById('semester-input').value = value;
+            document.getElementById('dropdown-list').style.display = 'none'; // Hide dropdown after selection
+        }
+
+        // Hide dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown input')) {
+                document.getElementById('dropdown-list').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

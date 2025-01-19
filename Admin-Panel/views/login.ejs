@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #0072b5; /* Primary color */
+            color: #fff;
+            padding: 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Maximum width for the form */
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        form div {
+            margin-bottom: 1.5rem; /* Spacing between form elements */
+        }
+
+        /* Input and Select Styles */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #0072b5; /* Change border color on focus */
+            outline: none;
+        }
+
+        button {
+            background-color: #0072b5; /* Primary button color */
+            color: #fff;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition : background-color 0.3s ease;
+            width: 100%; /* Full width button */
+        }
+
+        button:hover {
+            background-color: #005f8c; /* Darker shade on hover */
+        }
+
+        .error-message {
+            color: red; /* Error message color */
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0072b5; /* Primary color */
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Home Link */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #0072b5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem; /* Adjust padding for smaller screens */
+            }
+
+            form {
+                padding: 1.5rem; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+
+    <main>
+        <form action="/login" method="post">
+            <% if (error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="password">Password:</label><br>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    pattern=".{8,}" 
+                    title="Password must be at least 8 characters long">
+            </div>
+            <a href="/home">Back to Home</a>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+    <footer>
+        © <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+</ html>
+</body>
+</html>

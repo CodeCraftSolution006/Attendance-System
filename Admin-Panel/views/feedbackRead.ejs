@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Management</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, rgba(120, 125, 128, 0.8), rgba(79, 103, 123, 0.8)), url('./academic-block-university-of-layyah1729969953.jpg') no-repeat center/cover;
+            background-color: #f4f5f7;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #ffffff;
+            font-size: 2rem;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Feedback container */
+        .feedback-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Feedback card */
+        .feedback-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feedback-card h2 {
+            font-size: 1.2rem;
+            color: #1e88e5;
+            margin-bottom: 10px;
+        }
+
+        .feedback-card p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .feedback-card p strong {
+            color: #333;
+        }
+
+        .feedback-actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .feedback-actions button {
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .feedback-actions button:hover {
+            background-color: #1565c0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .navbar a {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <h2>Admin Dashboard</h2>
+        </div>
+        <div>
+            <a href="/home">Home</a>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <h1>User Feedback</h1>
+    <% if (feedback.length === 0) { %>
+        <p style="text-align: center; font-size: 1.2rem; color: #666;">No feedback has been submitted yet.</p>
+    <% } else { %>
+        <div class="feedback-container">
+            <% feedback.forEach(function(f) { %>
+                <div class="feedback-card">
+                    <h2><%= f.name %></h2>
+                    <p><strong>Email:</strong> <%= f.email %></p>
+                    <p><strong>Phone:</strong> <%= f.phone %></p>
+                    <p><strong>Address:</strong> <%= f.address %></p>
+                    <p><strong>Feedback:</strong> <%= f.feedback %></p>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <footer>
+        © <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+
+    <script>
+        function handleAction(id, action) {
+            // Placeholder function to handle admin actions
+            alert(`Action: ${action} for feedback ID: ${id}`);
+        }
+    </script>
+</body>
+</html>

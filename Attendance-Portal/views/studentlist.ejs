@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-A</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0072b5;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logout-button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 5rem;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Student List Section */
+        .student-list {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-list h1 {
+            font-size: 1.8rem;
+            color: #0072b5;
+            margin-bottom: 4rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0072b5;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; /* Highlight row on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0072b5;
+            color: #fff;
+            margin-top: 45px;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: 5.6rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem; /* Smaller font size for mobile */
+            }
+
+            .logout-button {
+                padding: 0.5rem; /* Smaller padding for mobile */
+            }
+
+            .student-list h1 {
+                font-size: 1.5rem; /* Smaller font size for mobile */
+            }
+
+            th, td {
+                padding: 0.75rem; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Attendance System</h1>
+        <form action="/logout" method="POST">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </header>
+
+    <main>
+        <section class="student-list">
+            <% if (student) { %>
+                <h1>Attendance for <%= student.name %></h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Attendance</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= student.rollno %></td>
+                            <td class="Check"><%= student.totalAttendanceCount %></td>
+                            <td class="Percentage"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            <% } else { %>
+                <p>No student records found.</p>
+            <% } %>
+            <p style="color: red; margin: auto; "><u>Your % must be greater than 75%</u></p>
+        </section>
+    </main>
+
+    <footer>
+        © <%= new Date().getFullYear() %> Attendance System. All Rights Reserved.
+    </footer>
+    <script>
+        var attend = document.getElementsByClassName('Check');
+        var percentageCells = document.getElementsByClassName('Percentage');
+    
+        for (var i = 0; i < attend.length; i++) {
+            // Get the attendance count and calculate the percentage
+            var cal = parseFloat(attend[i].innerHTML); // Parse as a number
+            var percentage = (cal * 100) / 150;
+            
+            console.log(percentage); // Print each percentage
+    
+            // Assign the percentage to a corresponding element in Percentage cells
+            percentageCells[i].innerHTML = percentage.toFixed(2) + '%';
+        }
+    </script>
+    </body>
+    </html>

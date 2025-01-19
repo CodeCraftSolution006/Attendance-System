@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, rgba(240, 244, 248, 0.8), rgba(93, 145, 190, 0.8)), url('/LogoUOL.jpg') no-repeat center/cover;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #0072b5;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 1rem;
+            max-width: 600px;
+            margin: 4rem auto; /* Center the main content */
+            flex: 1; /* Allow main to grow */
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: #fff;
+            padding: 2zrem;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+       
+
+        .form-section input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #d0dfe6;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-section input:focus {
+            border-color: #0072b5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 114, 181, 0.3);
+        }
+
+        .form-section {
+            
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #0072b5;
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size:  1.1rem;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #005f8c;
+        }
+
+
+        /* Cancel Button */
+        .cancel-button {
+            background-color: #d9534f; /* Bootstrap danger color */
+        }
+
+        .cancel-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0072b5;
+            color: #fff;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: 5.6rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Edit Student Details</h1>
+        <nav>
+            <a href="/index" style="color: #fff; text-decoration: none;">Back to Attendance</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="form-section">
+            <% if (student) { %>
+                <form action="/update-student" method="post">
+                    <input type="hidden" name="rollno" value="<%= student.rollno %>">
+                    <div>
+                        <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" value="<%= student.name %>" required>
+                </div>
+                <div>
+                    <label for="className">Class:</label>
+                    <input type="text" name="className" id="className" value="<%= student.className %>" required>
+                </div>
+                <button type="submit">Update</button>
+                <button type="button" class="cancel-button" onclick="window.location.href='/index'">Cancel</button>
+            </form>
+        <% } else { %>
+            <p>No student data found.</p>
+        <% } %>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Your Institution Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
