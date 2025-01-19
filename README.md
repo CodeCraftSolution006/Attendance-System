@@ -3,7 +3,8 @@
 The **University Attendance System** is a web-based application designed to simplify and automate the management of student attendance. It ensures efficiency, transparency, and user-friendliness for professors, students, and university administration.
 
 ---
-
+## **Note**
+  - Please your local monogdb database connection string to server.js file for running the code file
 ## **Features**
 ### 1. Multiple User Roles
 - **Admin Panel**:
