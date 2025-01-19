@@ -4,7 +4,7 @@ The **University Attendance System** is a web-based application designed to simp
 
 ---
 ## **Note**
-  - Please your local monogdb database connection string to server.js file for running the code file
+  - Please your local mongodb database connection string to server.js file for running the code file
 ## **Features**
 ### 1. Multiple User Roles
 - **Admin Panel**:
