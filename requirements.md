@@ -12,7 +12,4 @@ mongoose
 dotenv
 bcrypt
 jsonwebtoken
-cookie-parser
-cors
 express-session
-nodemailer
