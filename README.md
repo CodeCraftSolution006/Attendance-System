@@ -69,4 +69,4 @@ The **University Attendance System** is a web-based application designed to simp
 1. Clone the repository:
    ```bash
    git clone https://github.com/CodeCraftSolution006/Attendance-System.git
-   cd university-attendance-system
+   cd Attendance-System
