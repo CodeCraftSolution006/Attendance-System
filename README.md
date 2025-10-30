@@ -68,5 +68,5 @@ The **University Attendance System** is a web-based application designed to simp
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/university-attendance-system.git
+   git clone https://github.com/CodeCraftSolution006/Attendance-System.git
    cd university-attendance-system
